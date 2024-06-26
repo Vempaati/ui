@@ -25,8 +25,8 @@ const UserInteractionsExample = () => {
     role: 'tooltip' // give the floating element a role
   })
   const dismiss = useDismiss(context, {
-    onClickOutside: () => setIsOpen(false),
-    onEscape: () => setIsOpen(false)
+    // onClickOutside: () => setIsOpen(false),
+    // onEscape: () => setIsOpen(false)
   })
 
   const { getReferenceProps, getFloatingProps } = useInteractions([

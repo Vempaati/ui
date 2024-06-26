@@ -1,19 +1,26 @@
-'use client';
-import React from 'react';
-import {customClassSwitcher} from '~/core';
+'use client'
 
-const COMPONENT_NAME = 'Kbd';
+import React, { PropsWithChildren } from 'react'
+import { customClassSwitcher } from '~/core'
 
-export type KbdProps = {
-    children: React.ReactNode;
-    customRootClass?: string;
-    className?: string;
-    props: Record<string, any>[];
+const COMPONENT_NAME = 'Kbd'
+
+export interface KbdProps extends React.HTMLAttributes<HTMLElement> {
+  customRootClass?: string
 }
 
-const Kbd = ({children, customRootClass, className, ...props}: KbdProps) => {
-    const rootClass = customClassSwitcher(customRootClass, COMPONENT_NAME);
-    return <kbd className={`${rootClass} ${className}`} {...props}>{children}</kbd>;
-};
+const Kbd = ({
+  children,
+  customRootClass,
+  className,
+  ...props
+}: PropsWithChildren<KbdProps>) => {
+  const rootClass = customClassSwitcher(customRootClass, COMPONENT_NAME)
+  return (
+    <kbd className={`${rootClass} ${className}`} {...props}>
+      {children}
+    </kbd>
+  )
+}
 
-export default Kbd;
+export default Kbd

@@ -1,8 +1,18 @@
 'use client'
 
-import React from 'react'
+import React, { PropsWithChildren } from 'react'
 
 import { customClassSwitcher } from '~/core'
+
+export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
+  as?: string
+  customRootClass?: string
+}
+
+export interface HeadingType {
+  label: string
+  tag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+}
 
 const RENDER_AS_ENUMS = [
   {
@@ -29,16 +39,20 @@ const RENDER_AS_ENUMS = [
     label: 'H6',
     tag: 'h6'
   }
-]
+] as HeadingType[]
 
-const Heading = (
-  { children, as = undefined, customRootClass = '', className = '' },
+const Heading = ({
+  children,
+  as,
+  customRootClass = '',
+  className = '',
   ...props
-) => {
+}: PropsWithChildren<HeadingProps>) => {
   const rootClass = customClassSwitcher(customRootClass, as || 'h1')
 
-  if (as !== undefined && RENDER_AS_ENUMS.find((item) => item.tag === as)) {
-    const { tag: Tag } = RENDER_AS_ENUMS.find((item) => item.tag === as)
+  const item = RENDER_AS_ENUMS.find((item) => item.tag === as)
+  if (as && item) {
+    const { tag: Tag } = item
     return (
       <Tag className={`${rootClass} ${className}`} {...props}>
         {children}

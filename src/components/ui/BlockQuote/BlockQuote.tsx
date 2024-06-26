@@ -10,7 +10,6 @@ export type BlockQuoteProps = {
   children: React.ReactNode
   customRootClass?: string
   className?: string
-  props: Record<string, any>[]
 }
 const BlockQuote = ({
   children,

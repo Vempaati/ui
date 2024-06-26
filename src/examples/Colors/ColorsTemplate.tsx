@@ -1,4 +1,6 @@
-function ColorBubble({ colorClass }) {
+import React from 'react'
+
+function ColorBubble({ colorClass }: { colorClass: string }) {
   const size = 32
   return (
     <div

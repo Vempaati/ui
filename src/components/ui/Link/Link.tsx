@@ -1,18 +1,16 @@
 'use client'
 
-import React from 'react'
+import React, { PropsWithChildren } from 'react'
 
 import { customClassSwitcher } from '~/core'
 
 const COMPONENT_NAME = 'Link'
 
-export type LinkProps = {
-  children: React.ReactNode
+export interface LinkProps extends React.HTMLAttributes<HTMLAnchorElement> {
   href: string
   alt?: string
-  customRootClass: string
-  className: string
-  props: Record<string, any>[]
+  customRootClass?: string
+  target: string
 }
 
 // TODO: in the previous return value
@@ -24,11 +22,17 @@ const Link = ({
   alt,
   customRootClass,
   className,
+  target,
   ...props
-}: LinkProps) => {
+}: PropsWithChildren<LinkProps>) => {
   const rootClass = customClassSwitcher(customRootClass, COMPONENT_NAME)
   return (
-    <a href={href} className={`${rootClass} ${className}`} {...props}>
+    <a
+      href={href}
+      className={`${rootClass} ${className}`}
+      target={target}
+      {...props}
+    >
       {children}
     </a>
   )

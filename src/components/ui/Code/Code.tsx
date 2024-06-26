@@ -1,12 +1,10 @@
 'use client'
 
-import React from 'react'
+import React, { PropsWithChildren } from 'react'
 
-export type CodeProps = {
-  children: React.ReactNode
-}
+export interface CodeProps extends React.HTMLAttributes<HTMLElement> {}
 
-const Code = ({ children }: CodeProps) => {
+const Code = ({ children }: PropsWithChildren<CodeProps>) => {
   return <code className="rui-code-root">{children}</code>
 }
 

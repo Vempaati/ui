@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { PropsWithChildren } from 'react'
 import Popper from '~/components/tools/Popper/Popper'
 
 // TODO: fix any
-export type DropdownProps = {
-  list: { value: any }[]
-  selected: any
+export interface DropdownProps extends PropsWithChildren {
+  label: string
+  list: { value: any; label: string }[]
+  selected?: any
+  onSelect: () => void
 }
 
 const Dropdown = ({ list = [] }: DropdownProps) => {

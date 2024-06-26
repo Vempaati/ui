@@ -1,6 +1,6 @@
 'use client'
 
-import React, { SyntheticEvent } from 'react'
+import React, { RefObject, SyntheticEvent } from 'react'
 import { customClassSwitcher } from '~/core'
 
 // make the color prop default accent color
@@ -9,12 +9,13 @@ const COMPONENT_NAME = 'Button'
 export type ButtonProps = {
   children?: React.ReactNode
   color?: string
+  buttonRef?: RefObject<HTMLButtonElement>
   type?: 'button' | 'submit' | 'reset'
   className?: string
   customRootClass?: string
   variant?: 'solid' | 'outline' | 'soft' | 'ghost'
   props?: any
-  onClick: (e: SyntheticEvent) => void
+  onClick?: (e: SyntheticEvent) => void
 }
 
 const Button = ({
@@ -25,6 +26,7 @@ const Button = ({
   className = '',
   variant = 'solid',
   onClick,
+  buttonRef,
   ...props
 }: ButtonProps) => {
   const rootClass = customClassSwitcher(customRootClass, COMPONENT_NAME)
@@ -37,6 +39,7 @@ const Button = ({
       className={`${rootClass} button-${variant} ${className}`}
       data-accent-color={color ?? undefined}
       onClick={onClick}
+      ref={buttonRef}
       {...props}
     >
       {children}
